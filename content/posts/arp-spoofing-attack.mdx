@@ -43,16 +43,18 @@ modify the data before forwarding it (man-in-the-middle attack), or launch a den
 
 ### How can we defend against an Arp Spoofing attack?
 
-#### Static ARP entries
+#### Static ARP Entries
 
 The simplest form of certification is the use of static, read-only entries for critical services in the ARP cache of a host. IP address-to-MAC address mappings in the local ARP 
 cache may be statically entered. Hosts don't need to transmit ARP requests where such entries exist.
 
-#### Detection and prevention software
+#### Detection and Prevention Software
 
 Software that detects ARP spoofing generally relies on some form of certification or cross-checking of ARP responses. Uncertified ARP responses are then blocked. 
 These techniques may be integrated with the DHCP server so that both dynamic and static IP addresses are certified. 
 
-#### OS security
+#### Operating System Security
 
 Operating systems react differently. Linux ignores unsolicited replies, but, on the other hand, uses responses to requests from other machines to update its cache.
+
+<hr>
