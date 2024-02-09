@@ -4,7 +4,7 @@ description: Performing an arp spoofing attack with the Bettercap tool.
 date: "2024-02-09"
 ---
 
-### What is Arp Spoofing?
+## What is Arp Spoofing?
 
 In computer networking, ARP spoofing, ARP cache poisoning, or ARP poison routing, is a technique by which an attacker sends (spoofed) Address Resolution Protocol (ARP) 
 messages onto a local area network. Generally, the aim is to associate the attacker's MAC address with the IP address of another host, such as the default gateway, causing any 
@@ -15,7 +15,7 @@ such as denial of service, man in the middle, or session hijacking attacks.
 
 The attack can only be used on networks that use ARP, and requires attacker have direct access to the local network segment to be attacked.
 
-### What are ARP Spoofing Vulnerabilities?
+## What are ARP Spoofing Vulnerabilities?
 
 The Address Resolution Protocol (ARP) is a widely used communications protocol for resolving Internet layer addresses into link layer addresses.
 
@@ -28,7 +28,7 @@ Even ARP entries that have not yet expired will be overwritten when a new ARP re
 the peer from which the packet originated. This behavior is the vulnerability that allows ARP spoofing to occur.
 
 
-### What is the anatomy of the Arp Spoof?
+## What is the anatomy of the Arp Spoof?
 
 The basic principle behind ARP spoofing is to exploit the lack of authentication in the ARP protocol by sending spoofed ARP messages onto the LAN. 
 ARP spoofing attacks can be run from a compromised host on the LAN, or from an attacker's machine that is connected directly to the target LAN.
@@ -41,20 +41,20 @@ sent to the attacker's host. The attacker may choose to inspect the packets (spy
 modify the data before forwarding it (man-in-the-middle attack), or launch a denial-of-service attack by causing some or all of the packets on the network to be dropped.
 
 
-### How can we defend against an Arp Spoofing attack?
+## How can we defend against an Arp Spoofing attack?
 
-#### Static ARP Entries
+### Static ARP Entries
 
 The simplest form of certification is the use of static, read-only entries for critical services in the ARP cache of a host. IP address-to-MAC address mappings in the local ARP 
 cache may be statically entered. Hosts don't need to transmit ARP requests where such entries exist.
 
-#### Detection and Prevention Software
+### Detection and Prevention Software
 
 Software that detects ARP spoofing generally relies on some form of certification or cross-checking of ARP responses. Uncertified ARP responses are then blocked. 
 These techniques may be integrated with the DHCP server so that both dynamic and static IP addresses are certified. 
 
-#### Operating System Security
+### Operating System Security
 
 Operating systems react differently. Linux ignores unsolicited replies, but, on the other hand, uses responses to requests from other machines to update its cache.
 
-<hr>
+<hr></hr>
