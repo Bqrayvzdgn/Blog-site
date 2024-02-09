@@ -4,7 +4,8 @@ description: Performing an arp spoofing attack with the Bettercap tool.
 date: "2024-02-09"
 ---
 
-### What is Arp Spoofing?
+
+<h2> What is Arp Spoofing? </h2>
 
 In computer networking, ARP spoofing, ARP cache poisoning, or ARP poison routing, is a technique by which an attacker sends (spoofed) Address Resolution Protocol (ARP) 
 messages onto a local area network. Generally, the aim is to associate the attacker's MAC address with the IP address of another host, such as the default gateway, causing any 
@@ -15,7 +16,7 @@ such as denial of service, man in the middle, or session hijacking attacks.
 
 The attack can only be used on networks that use ARP, and requires attacker have direct access to the local network segment to be attacked.
 
-### What are ARP Spoofing Vulnerabilities?
+<h2> What are ARP Spoofing Vulnerabilities? </h2>
 
 The Address Resolution Protocol (ARP) is a widely used communications protocol for resolving Internet layer addresses into link layer addresses.
 
@@ -28,7 +29,7 @@ Even ARP entries that have not yet expired will be overwritten when a new ARP re
 the peer from which the packet originated. This behavior is the vulnerability that allows ARP spoofing to occur.
 
 
-### What is the anatomy of the Arp Spoof?
+<h2> What is the anatomy of the Arp Spoof? </h2>
 
 The basic principle behind ARP spoofing is to exploit the lack of authentication in the ARP protocol by sending spoofed ARP messages onto the LAN. 
 ARP spoofing attacks can be run from a compromised host on the LAN, or from an attacker's machine that is connected directly to the target LAN.
@@ -41,26 +42,109 @@ sent to the attacker's host. The attacker may choose to inspect the packets (spy
 modify the data before forwarding it (man-in-the-middle attack), or launch a denial-of-service attack by causing some or all of the packets on the network to be dropped.
 
 
-### How can we defend against an Arp Spoofing attack?
+<h2> How can we defend against an Arp Spoofing attack? </h2>
 
-#### Static ARP Entries
+<h3> Static ARP Entries </h3>
 
 The simplest form of certification is the use of static, read-only entries for critical services in the ARP cache of a host. IP address-to-MAC address mappings in the local ARP 
 cache may be statically entered. Hosts don't need to transmit ARP requests where such entries exist.
 
-#### Detection and Prevention Software
+<h3> Detection and Prevention Software </h3>
 
 Software that detects ARP spoofing generally relies on some form of certification or cross-checking of ARP responses. Uncertified ARP responses are then blocked. 
 These techniques may be integrated with the DHCP server so that both dynamic and static IP addresses are certified. 
 
-#### Operating System Security
+<h3> Operating System Security </h3>
 
 Operating systems react differently. Linux ignores unsolicited replies, but, on the other hand, uses responses to requests from other machines to update its cache.
 
 <hr></hr>
 
-<h4>Now I will show you a simple arp spoofing attack using the bettercap tool in Kali Linux, a Linux distribution.</h4>
+<h2> ARP kimlik sahtekarlığı saldırısı nasıl gerçekleştirilir? </h2>
 
-Kali linuxa giriş yapıyoruz.
+Linux dağıtımı olan Kali Linux'ta bulunan Bettercap aracını kullanarak basit bir arp sahtekarlığı saldırısıni sizlere göstereceğim.
 
-![Hello](public/post-picture/arp-spoofing-attack/1.png)
+1. Kali'nin kurulu olduğu sanal makinayı açıyoruz.
+
+2. Root kullanıcısıyla yada Kali'ye kayıt olduğunuz kullanıcıyla giriş yapıyoruz.
+
+3. Görev çubuğundan *Terminal*'i açıyoruz.
+
+4. Karsimiza cikan terminale "**sudo su -**" yazarak bilgisayardaki en yetkili kullaniciya yani **root** a erisim sagliyoruz.
+
+5. Terminal uzerinden **New Tab** diyerek yeni bir terminal sayfasi aciyoruz.
+
+6. Yeni actigimiz terminale "**iwconfig**" yazarak su anda aktif olan ag aygitlarimizi gozlemliyoruz.
+
+7. Ag aygitimiz eger kablolu bir baglanti yaptisaniz **eth0** (Parrot gibi farkli dagitimlar kullaniyorsaniz degisebilir. Ornegin Parrotda **ens33**), wifi ile baglandiysaniz **wlan0** yazacaktir. Ben bu kisimda standart olan **eth0** ile islem yapacagim sizlerde degisiklik gosterebilir.
+
+8. Oncelikle yapmamiz gereken saldiri yapcagimiz cihazi secmemiz lazim bunun icin **nmap, netdiscover** vb. toollari kullanabilirsiniz. Ben bu bolumde kolay olmasi icin **netdiscover** kullanacagim.
+
+9. Agi taramak icin terminale su komutu yaziyoruz ;
+``` bash
+netdiscover -i eth0 -r 192.168.237.0/24 -c 20
+``` 
+Benim hedef bilgisayarim 237. blokta oldugu icin 237. blogu tariyorum. sizler kendi ip blogunuzu gormek icin terminali acip "**ifconfig**" yada "**ip addr**" yazabilirsiniz.<br></br>
+Sizlere yazdigimiz terminal kodunun ne yaptigini aciklayim. 
+- "**-i eth0 **" : Yazilan Ag aygiti uzerinden tarama yapacagimiz anlamina geliyor.
+- "**-r {Hedef_Ip_Blogu}**" : Port taramasini yapacagimiz IP blogunu tarayacagimiz anlamina geliyor.
+- "**-c {Paket_Sayisi}**" : Tarayacagimiz ip bloguna kac adet paket gonderecegimizi yaziyoruz.
+
+10. Agi taradiktan sonra **Hedef Ip** yi seciyoruz. (Ben bu ornekte kendim kurban bir sanal makina olusturdum ve onun ip sini sececegim.)
+
+11. Sayfayi temizliyoruz yada yeni bir sayfa aciyoruz. (**clear** komutunu kullanarak termianl i temizleyebilirsiniz.) 
+
+12. Bettercap toolunu baslatacagiz ama ondan once Makinanizda kurulumu diye kontrol etmemiz gerekiyor. Bettercap in kurulu olup olmadigini su komutla ogrenebiliriz ;
+``` bash
+sudo apt install bettercap
+``` 
+
+komutunu giriyoruz. Eger kurulu yaziyorsa kullandigimiz makinada bettercap kurulu anlamina gelmektedir.
+13. Kurulmadiysa "https://www.bettercap.org/installation/" in websitesinde nasil kurulacagi yaziyor.
+
+14. Tekrardan terminale geliyoruz. **Bettercap** i calistirmak icin su komutu giriyoruz ;
+``` bash
+bettercap -iface eth0
+``` 
+Sizlere yazdigimiz terminal kodunun ne yaptigini aciklayim. 
+- "**-iface**" : Hangi ag aygitiyla giris yapacagimizi yaziyoruz. Ve o ag uzerinden saldiriyi yapacagimizi belirtiyoruz.
+
+15. Bettercap in arayuzune erisiyoruz.
+
+16. Oncelikle help komutunu giriyoruz. Bettercap in icerisindeki modulleri goruyoruz. ve ne gibi saldirilari yapabilecegimizi goruyoruz.
+
+17. **arp.spoof** modulunu goruyoruz. Ve arp spoof modulunu incelemek icin "**help arp.spoof**" komutunu giriyoruz.
+Arp.spoof modulundeki komutlari "https://www.bettercap.org/modules/ethernet/spoofers/arp.spoof/" linkine giderek komutlari inceleyebilirsiniz.
+
+18. Saldiriyi yapacagamiz komutlari yazalim ;
+``` bash
+set arp.spoof.fullduplex true
+``` 
+Ardindan su komutu giriyoruz.
+``` bash
+set arp.spoof.internal true
+``` 
+Ve son olarak hedefimizi belirtiyoruz.
+``` bash
+set arp.spoof.target {HEDEF_IP} # 192.168.237.133
+``` 
+Simdi Arp spoofing saldirisini baslatabiliriz. baslatmak icin su komutu giriniz ;
+``` bash
+arp.spoof on
+``` 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
