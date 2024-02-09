@@ -60,91 +60,99 @@ Operating systems react differently. Linux ignores unsolicited replies, but, on 
 
 <hr></hr>
 
-<h2> ARP kimlik sahtekarlığı saldırısı nasıl gerçekleştirilir? </h2>
+<h2> How is an ARP identity fraud attack carried out? </h2>
 
-Linux dağıtımı olan Kali Linux'ta bulunan Bettercap aracını kullanarak basit bir arp sahtekarlığı saldırısıni sizlere göstereceğim.
+Using the Bettercap tool available on Kali Linux, a Linux distribution, I will show you a simple arp fraud attack.
 
-1. Kali'nin kurulu olduğu sanal makinayı açıyoruz.
+1. We are opening the virtual machine where Kali is installed.
 
-2. Root kullanıcısıyla yada Kali'ye kayıt olduğunuz kullanıcıyla giriş yapıyoruz.
+2. We log in with the root user or the user with whom you have registered with Kali.
 
-3. Görev çubuğundan *Terminal*'i açıyoruz.
+3. We open the *Terminal * from the taskbar.
 
-4. Karsimiza cikan terminale "**sudo su -**" yazarak bilgisayardaki en yetkili kullaniciya yani **root** a erisim sagliyoruz.
+4. By typing "**sudo su -**" into the terminal that appears in front of us, we provide access to the most authorized user on the computer, namely **root**.
 
-5. Terminal uzerinden **New Tab** diyerek yeni bir terminal sayfasi aciyoruz.
+5. We are opening a new terminal page by saying **New Tab ** in the terminal.
 
-6. Yeni actigimiz terminale "**iwconfig**" yazarak su anda aktif olan ag aygitlarimizi gozlemliyoruz.
+6. By typing "** iwconfig **" into the newly activated terminal, we are not displaying our currently active network devices.
 
-7. Ag aygitimiz eger kablolu bir baglanti yaptisaniz **eth0** (Parrot gibi farkli dagitimlar kullaniyorsaniz degisebilir. Ornegin Parrotda **ens33**), wifi ile baglandiysaniz **wlan0** yazacaktir. Ben bu kisimda standart olan **eth0** ile islem yapacagim sizlerde degisiklik gosterebilir.
+7. If you have established a wired connection, our network device may change **eth0** (If you are using different distributions, such as Parrot. For example, in Parrot ** ens33 **), if you are connected via wifi, it will type ** wlan0 **. I will make a transaction with standard ** eth0** in this section, it may show changes for you.
 
-8. Oncelikle yapmamiz gereken saldiri yapcagimiz cihazi secmemiz lazim bunun icin **nmap, netdiscover** vb. toollari kullanabilirsiniz. Ben bu bolumde kolay olmasi icin **netdiscover** kullanacagim.
+8. First of all, we need to select the device we are going to attack, for this we need to use ** nmap, netdiscover ** etc. We have to do it. you can use the tools. I will use **netdiscover** to make it easier in this area.
 
-9. Agi taramak icin terminale su komutu yaziyoruz ;
+9. We are typing a water command into the terminal to scan the network ;
 ``` bash
 netdiscover -i eth0 -r 192.168.237.0/24 -c 20
 ``` 
-Benim hedef bilgisayarim 237. blokta oldugu icin 237. blogu tariyorum. sizler kendi ip blogunuzu gormek icin terminali acip "**ifconfig**" yada "**ip addr**" yazabilirsiniz.<br></br>
-Sizlere yazdigimiz terminal kodunun ne yaptigini aciklayim. 
-- "**-i eth0 **" : Yazilan Ag aygiti uzerinden tarama yapacagimiz anlamina geliyor.
-- "**-r Hedef_Ip_Blogu**" : Port taramasini yapacagimiz IP blogunu tarayacagimiz anlamina geliyor.
-- "**-c Paket_Sayisi**" : Tarayacagimiz ip bloguna kac adet paket gonderecegimizi yaziyoruz.
+My target computer is 237. 237 for being on the block. i'm browsing the blog. you can open the terminal and type "**ifconfig**" or "**ip addr**" to view your own ip blog.<br></br>
+Let me explain to you what the terminal code we wrote does.
+- "**-i eth0**" : It means that we will scan on the network device that is written.
+- "**-r Target_ip_blog**" : It means that we will scan the port and scan the IP blog.
+- "**-c pack_number**" : We are writing that we will send several packages to the ip blog that we will scan.
 
-10. Agi taradiktan sonra **Hedef Ip** yi seciyoruz. (Ben bu ornekte kendim kurban bir sanal makina olusturdum ve onun ip sini sececegim.)
+10. After scanning the network, we select the **Target Ip**. (For example, I have created a sacrificial virtual machine myself and I will select its IP.)
 
-11. Sayfayi temizliyoruz yada yeni bir sayfa aciyoruz. (**clear** komutunu kullanarak termianl i temizleyebilirsiniz.) 
+11. We clean the page or open a new page. (you can clear the thermian by using the **clear** command.)
 
-12. Bettercap toolunu baslatacagiz ama ondan once Makinanizda kurulumu diye kontrol etmemiz gerekiyor. Bettercap in kurulu olup olmadigini su komutla ogrenebiliriz ;
+12. We will launch the Bettercap tool, but before that we need to check the installation on your machine. We can find out if bettercap is installed by water command ;
 ``` bash
 sudo apt install bettercap
-``` 
+```
+we are entering the command. If it says board, it means bettercap board on the machine we are using.
 
-komutunu giriyoruz. Eger kurulu yaziyorsa kullandigimiz makinada bettercap kurulu anlamina gelmektedir.
-13. Kurulmadiysa "https://www.bettercap.org/installation/" in websitesinde nasil kurulacagi yaziyor.
+13. If it is not established "https://www.bettercap.org/installation /"s website says how to install.
 
-14. Tekrardan terminale geliyoruz. **Bettercap** i calistirmak icin su komutu giriyoruz ;
+14. We are coming to the terminal again. *We are entering the water command to run *bettercap** ;
 ``` bash
 bettercap -iface eth0
-``` 
-Sizlere yazdigimiz terminal kodunun ne yaptigini aciklayim. 
-- "**-iface**" : Hangi ag aygitiyla giris yapacagimizi yaziyoruz. Ve o ag uzerinden saldiriyi yapacagimizi belirtiyoruz.
+```
+Let me explain to you what the terminal code we wrote does.
+- "**-iface**" : We are writing which network device we will log in with. And we are indicating that we will carry out the attack on that network.
 
-15. Bettercap in arayuzune erisiyoruz.
+15. We are accessing Bettercap's interface.
 
-16. Oncelikle help komutunu giriyoruz. Bettercap in icerisindeki modulleri goruyoruz. ve ne gibi saldirilari yapabilecegimizi goruyoruz.
+16. First of all, we enter the help command. We are viewing the modules in Bettercap. and we're seeing what kind of attacks we can do.
 
-17. **arp.spoof** modulunu goruyoruz. Ve arp spoof modulunu incelemek icin "**help arp.spoof**" komutunu giriyoruz.
-Arp.spoof modulundeki komutlari "https://www.bettercap.org/modules/ethernet/spoofers/arp.spoof/" linkine giderek komutlari inceleyebilirsiniz.
+17. **harp.we are seeing the spoof** module. And to examine the arp spoof module "**help arp.we are entering the command "spoof**".
+The harp.commands in the spoof module "https://www.bettercap.org/modules/ethernet/spoofers/arp.spoof /" you can review the commands by going to the link.
 
-18. Saldiriyi yapacagamiz komutlari yazalim ;
+18. We'll make the attack, let's write the commands ;
+
 ``` bash
-set arp.spoof.fullduplex true
-``` 
-Ardindan su komutu giriyoruz.
+set harp.spoof.fullduplex true
+```
+
+Then we enter the water command.
 ``` bash
-set arp.spoof.internal true
-``` 
-Ve son olarak hedefimizi belirtiyoruz.
+set harp.spoof.internal true
+```
+
+And finally, we state our goal.
 ``` bash
-set arp.spoof.target HEDEF_IP # 192.168.237.133
-``` 
-Simdi Arp spoofing saldirisini baslatabiliriz. baslatmak icin su komutu giriniz ;
+set harp.spoof.target TARGET_IP #192.168.237.133
+```
+
+Now we can launch the Harp spoofing attack. enter the water command to start ;
 ``` bash
-arp.spoof on
-``` 
+the harp.spoof on
+```
 
+19. Our harp spoofing attack is taking place. Go to the virtual machine installed as a victim and type the water command on the **cmd** screen.
+``` shell
+arp -a
+```
 
+20. As you will see, the IP address of the attacking computer and the mac address of the modem at your home were the same. And from now on, **MITM** so you have carried out the man-in-the-middle attack.
 
+21. If you want to stop the attack, please come to Kaliye and run the water command in bettercap ;
+``` shell
+the harp.spoof off
+```
+22. After the written command, we ended the arp attack.
 
+23. If you go to your Target machine again and enter the **arp -a** command. You will see that the IP of your modem has changed.
 
+<hr></hr>
 
-
-
-
-
-
-
-
-
-
-<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+<h3>Dear Readers,</h3>
+<h4>I hope this article will help you inform and inspire your readers about ARP Spoofing and network security issues.</h4>
