@@ -87,8 +87,8 @@ netdiscover -i eth0 -r 192.168.237.0/24 -c 20
 Benim hedef bilgisayarim 237. blokta oldugu icin 237. blogu tariyorum. sizler kendi ip blogunuzu gormek icin terminali acip "**ifconfig**" yada "**ip addr**" yazabilirsiniz.<br></br>
 Sizlere yazdigimiz terminal kodunun ne yaptigini aciklayim. 
 - "**-i eth0 **" : Yazilan Ag aygiti uzerinden tarama yapacagimiz anlamina geliyor.
-- "**-r {Hedef_Ip_Blogu}**" : Port taramasini yapacagimiz IP blogunu tarayacagimiz anlamina geliyor.
-- "**-c {Paket_Sayisi}**" : Tarayacagimiz ip bloguna kac adet paket gonderecegimizi yaziyoruz.
+- "**-r Hedef_Ip_Blogu**" : Port taramasini yapacagimiz IP blogunu tarayacagimiz anlamina geliyor.
+- "**-c Paket_Sayisi**" : Tarayacagimiz ip bloguna kac adet paket gonderecegimizi yaziyoruz.
 
 10. Agi taradiktan sonra **Hedef Ip** yi seciyoruz. (Ben bu ornekte kendim kurban bir sanal makina olusturdum ve onun ip sini sececegim.)
 
@@ -126,7 +126,7 @@ set arp.spoof.internal true
 ``` 
 Ve son olarak hedefimizi belirtiyoruz.
 ``` bash
-set arp.spoof.target {HEDEF_IP} # 192.168.237.133
+set arp.spoof.target HEDEF_IP # 192.168.237.133
 ``` 
 Simdi Arp spoofing saldirisini baslatabiliriz. baslatmak icin su komutu giriniz ;
 ``` bash
