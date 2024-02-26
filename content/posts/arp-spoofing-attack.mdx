@@ -68,17 +68,17 @@ Using the Bettercap tool available on Kali Linux, a Linux distribution, I will s
 
 2. We log in with the root user or the user with whom you have registered with Kali.
 
-3. We open the *Terminal * from the taskbar.
+3. We open the *Terminal* from the taskbar.
 
 4. By typing "**sudo su -**" into the terminal that appears in front of us, we provide access to the most authorized user on the computer, namely **root**.
 
-5. We are opening a new terminal page by saying **New Tab ** in the terminal.
+5. We are opening a new terminal page by saying **New Tab** in the terminal.
 
 6. By typing "** iwconfig **" into the newly activated terminal, we are not displaying our currently active network devices.
 
-7. If you have established a wired connection, our network device may change **eth0** (If you are using different distributions, such as Parrot. For example, in Parrot ** ens33 **), if you are connected via wifi, it will type ** wlan0 **. I will make a transaction with standard ** eth0** in this section, it may show changes for you.
+7. If you have established a wired connection, our network device may change **eth0** (If you are using different distributions, such as Parrot. For example, in Parrot **ens33**), if you are connected via wifi, it will type **wlan0**. I will make a transaction with standard **eth0** in this section, it may show changes for you.
 
-8. First of all, we need to select the device we are going to attack, for this we need to use ** nmap, netdiscover ** etc. We have to do it. you can use the tools. I will use **netdiscover** to make it easier in this area.
+8. First of all, we need to select the device we are going to attack, for this we need to use **nmap, netdiscover** etc. We have to do it. you can use the tools. I will use **netdiscover** to make it easier in this area.
 
 9. We are typing a water command into the terminal to scan the network ;
 ``` bash
@@ -100,9 +100,9 @@ sudo apt install bettercap
 ```
 we are entering the command. If it says board, it means bettercap board on the machine we are using.
 
-13. If it is not established "https://www.bettercap.org/installation /"s website says how to install.
+13. If it is not established "https://www.bettercap.org/installation" website says how to install.
 
-14. We are coming to the terminal again. *We are entering the water command to run *bettercap** ;
+14. We are coming to the terminal again. *We are entering the water command to run **bettercap** ;
 ``` bash
 bettercap -iface eth0
 ```
@@ -113,8 +113,8 @@ Let me explain to you what the terminal code we wrote does.
 
 16. First of all, we enter the help command. We are viewing the modules in Bettercap. and we're seeing what kind of attacks we can do.
 
-17. **arp.we are seeing the spoof** module. And to examine the arp spoof module "**help arp.we are entering the command "spoof**".
-The arp.commands in the spoof module "https://www.bettercap.org/modules/ethernet/spoofers/arp.spoof /" you can review the commands by going to the link.
+17. Arp.we are seeing the spoof module. And to examine the arp spoof module **help** are entering the command spoof.
+The arp.commands in the spoof module "https://www.bettercap.org/modules/ethernet/spoofers/arp.spoof" you can review the commands by going to the link.
 
 18. We'll make the attack, let's write the commands ;
 
@@ -129,12 +129,12 @@ set arp.spoof.internal true
 
 And finally, we state our goal.
 ``` bash
-set arp.spoof.target TARGET_IP #192.168.237.133
+set arp.spoof.target TARGET_IP
 ```
 
 Now we can launch the arp spoofing attack. enter the water command to start ;
 ``` bash
-the arp.spoof on
+arp.spoof on
 ```
 
 19. Our arp spoofing attack is taking place. Go to the virtual machine installed as a victim and type the water command on the **cmd** screen.
@@ -146,7 +146,7 @@ arp -a
 
 21. If you want to stop the attack, please come to Kaliye and run the water command in bettercap ;
 ``` shell
-the arp.spoof off
+arp.spoof off
 ```
 22. After the written command, we ended the arp attack.
 
