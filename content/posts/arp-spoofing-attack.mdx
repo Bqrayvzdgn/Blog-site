@@ -4,14 +4,13 @@ description: Performing an arp spoofing attack with the Bettercap tool.
 date: "2024-02-09"
 ---
 
-
 <h2> What is Arp Spoofing? </h2>
 
-In computer networking, ARP spoofing, ARP cache poisoning, or ARP poison routing, is a technique by which an attacker sends (spoofed) Address Resolution Protocol (ARP) 
-messages onto a local area network. Generally, the aim is to associate the attacker's MAC address with the IP address of another host, such as the default gateway, causing any 
+In computer networking, ARP spoofing, ARP cache poisoning, or ARP poison routing, is a technique by which an attacker sends (spoofed) Address Resolution Protocol (ARP)
+messages onto a local area network. Generally, the aim is to associate the attacker's MAC address with the IP address of another host, such as the default gateway, causing any
 traffic meant for that IP address to be sent to the attacker instead.
 
-ARP spoofing may allow an attacker to intercept data frames on a network, modify the traffic, or stop all traffic. Often the attack is used as an opening for other attacks, 
+ARP spoofing may allow an attacker to intercept data frames on a network, modify the traffic, or stop all traffic. Often the attack is used as an opening for other attacks,
 such as denial of service, man in the middle, or session hijacking attacks.
 
 The attack can only be used on networks that use ARP, and requires attacker have direct access to the local network segment to be attacked.
@@ -20,39 +19,37 @@ The attack can only be used on networks that use ARP, and requires attacker have
 
 The Address Resolution Protocol (ARP) is a widely used communications protocol for resolving Internet layer addresses into link layer addresses.
 
-When an Internet Protocol (IP) datagram is sent from one host to another in a local area network, the destination IP address must be resolved to a MAC address for transmission via the data link layer. 
-When another host's IP address is known, and its MAC address is needed, a broadcast packet is sent out on the local network. This packet is known as an ARP request. 
+When an Internet Protocol (IP) datagram is sent from one host to another in a local area network, the destination IP address must be resolved to a MAC address for transmission via the data link layer.
+When another host's IP address is known, and its MAC address is needed, a broadcast packet is sent out on the local network. This packet is known as an ARP request.
 The destination machine with the IP in the ARP request then responds with an ARP reply that contains the MAC address for that IP.
 
-ARP is a stateless protocol. Network hosts will automatically cache any ARP replies they receive, regardless of whether network hosts requested them. 
-Even ARP entries that have not yet expired will be overwritten when a new ARP reply packet is received. There is no method in the ARP protocol by which a host can authenticate 
+ARP is a stateless protocol. Network hosts will automatically cache any ARP replies they receive, regardless of whether network hosts requested them.
+Even ARP entries that have not yet expired will be overwritten when a new ARP reply packet is received. There is no method in the ARP protocol by which a host can authenticate
 the peer from which the packet originated. This behavior is the vulnerability that allows ARP spoofing to occur.
-
 
 <h2> What is the anatomy of the Arp Spoof? </h2>
 
-The basic principle behind ARP spoofing is to exploit the lack of authentication in the ARP protocol by sending spoofed ARP messages onto the LAN. 
+The basic principle behind ARP spoofing is to exploit the lack of authentication in the ARP protocol by sending spoofed ARP messages onto the LAN.
 ARP spoofing attacks can be run from a compromised host on the LAN, or from an attacker's machine that is connected directly to the target LAN.
 
-An attacker using ARP spoofing will disguise as a host to the transmission of data on the network between the users. Then users would not know that the attacker is not the real 
+An attacker using ARP spoofing will disguise as a host to the transmission of data on the network between the users. Then users would not know that the attacker is not the real
 host on the network.
 
-Generally, the goal of the attack is to associate the attacker's host MAC address with the IP address of a target host, so that any traffic meant for the target host will be 
-sent to the attacker's host. The attacker may choose to inspect the packets (spying), while forwarding the traffic to the actual default destination to avoid discovery, 
+Generally, the goal of the attack is to associate the attacker's host MAC address with the IP address of a target host, so that any traffic meant for the target host will be
+sent to the attacker's host. The attacker may choose to inspect the packets (spying), while forwarding the traffic to the actual default destination to avoid discovery,
 modify the data before forwarding it (man-in-the-middle attack), or launch a denial-of-service attack by causing some or all of the packets on the network to be dropped.
-
 
 <h2> How can we defend against an Arp Spoofing attack? </h2>
 
 <h3> Static ARP Entries </h3>
 
-The simplest form of certification is the use of static, read-only entries for critical services in the ARP cache of a host. IP address-to-MAC address mappings in the local ARP 
+The simplest form of certification is the use of static, read-only entries for critical services in the ARP cache of a host. IP address-to-MAC address mappings in the local ARP
 cache may be statically entered. Hosts don't need to transmit ARP requests where such entries exist.
 
 <h3> Detection and Prevention Software </h3>
 
-Software that detects ARP spoofing generally relies on some form of certification or cross-checking of ARP responses. Uncertified ARP responses are then blocked. 
-These techniques may be integrated with the DHCP server so that both dynamic and static IP addresses are certified. 
+Software that detects ARP spoofing generally relies on some form of certification or cross-checking of ARP responses. Uncertified ARP responses are then blocked.
+These techniques may be integrated with the DHCP server so that both dynamic and static IP addresses are certified.
 
 <h3> Operating System Security </h3>
 
@@ -81,11 +78,14 @@ Using the Bettercap tool available on Kali Linux, a Linux distribution, I will s
 8. First of all, we need to select the device we are going to attack, for this we need to use **nmap, netdiscover** etc. We have to do it. you can use the tools. I will use **netdiscover** to make it easier in this area.
 
 9. We are typing a water command into the terminal to scan the network ;
-``` bash
+
+```bash
 netdiscover -i eth0 -r 192.168.237.0/24 -c 20
-``` 
+```
+
 My target computer is 237. 237 for being on the block. i'm browsing the blog. you can open the terminal and type "**ifconfig**" or "**ip addr**" to view your own ip blog.<br></br>
 Let me explain to you what the terminal code we wrote does.
+
 - "**-i eth0**" : It means that we will scan on the network device that is written.
 - "**-r Target_ip_blog**" : It means that we will scan the port and scan the IP blog.
 - "**-c pack_number**" : We are writing that we will send several packages to the ip blog that we will scan.
@@ -95,18 +95,23 @@ Let me explain to you what the terminal code we wrote does.
 11. We clean the page or open a new page. (you can clear the thermian by using the **clear** command.)
 
 12. We will launch the Bettercap tool, but before that we need to check the installation on your machine. We can find out if bettercap is installed by water command ;
-``` bash
+
+```bash
 sudo apt install bettercap
 ```
+
 we are entering the command. If it says board, it means bettercap board on the machine we are using.
 
 13. If it is not established "https://www.bettercap.org/installation" website says how to install.
 
 14. We are coming to the terminal again. We are entering the water command to run **bettercap** ;
-``` bash
+
+```bash
 bettercap -iface eth0
 ```
+
 Let me explain to you what the terminal code we wrote does.
+
 - "**-iface**" : We are writing which network device we will log in with. And we are indicating that we will carry out the attack on that network.
 
 15. We are accessing Bettercap's interface.
@@ -114,40 +119,46 @@ Let me explain to you what the terminal code we wrote does.
 16. First of all, we enter the help command. We are viewing the modules in Bettercap. and we're seeing what kind of attacks we can do.
 
 17. Arp.we are seeing the spoof module. And to examine the arp spoof module **help** are entering the command spoof.
-The arp.commands in the spoof module "https://www.bettercap.org/modules/ethernet/spoofers/arp.spoof" you can review the commands by going to the link.
+    The arp.commands in the spoof module "https://www.bettercap.org/modules/ethernet/spoofers/arp.spoof" you can review the commands by going to the link.
 
 18. We'll make the attack, let's write the commands ;
 
-``` bash
+```bash
 set arp.spoof.fullduplex true
 ```
 
 Then we enter the water command.
-``` bash
+
+```bash
 set arp.spoof.internal true
 ```
 
 And finally, we state our goal.
-``` bash
+
+```bash
 set arp.spoof.target TARGET_IP
 ```
 
 Now we can launch the arp spoofing attack. enter the water command to start ;
-``` bash
+
+```bash
 arp.spoof on
 ```
 
 19. Our arp spoofing attack is taking place. Go to the virtual machine installed as a victim and type the water command on the **cmd** screen.
-``` shell
+
+```shell
 arp -a
 ```
 
 20. As you will see, the IP address of the attacking computer and the mac address of the modem at your home were the same. And from now on, **MITM** so you have carried out the man-in-the-middle attack.
 
 21. If you want to stop the attack, please come to Kaliye and run the water command in bettercap ;
-``` shell
+
+```shell
 arp.spoof off
 ```
+
 22. After the written command, we ended the arp attack.
 
 23. If you go to your Target machine again and enter the **arp -a** command. You will see that the IP of your modem has changed.
@@ -155,4 +166,7 @@ arp.spoof off
 <hr></hr>
 
 <h3>Dear Readers,</h3>
-<p>I hope this article will help you inform and inspire your readers about ARP Spoofing and network security issues.</p>
+<p>
+  I hope this article will help you inform and inspire your readers about ARP
+  Spoofing and network security issues.
+</p>
